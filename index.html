@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NØRDLUXX – Boutique streetwear premium</title>
+  <!-- Google Fonts & Font Awesome (seules dépendances externes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8F7F4;
+      color: #1a1a1a;
+      line-height: 1.4;
+      padding: 0 20px;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      background: #F8F7F4;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+      padding: 0 30px 60px;
+    }
+
+    /* ----- HEADER (barre noire) ----- */
+    .header-black {
+      background: #0b0b0b;
+      color: #fff;
+      padding: 0 30px;
+      border-radius: 0 0 20px 20px;
+      margin: 0 -30px 30px -30px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+    .logo span {
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a {
+      color: #eaeaea;
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: #fff;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #FF6200;
+      transition: width 0.25s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    .header-icons i {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .header-icons i:hover {
+      color: #fff;
+    }
+    .cart-icon-wrap {
+      position: relative;
+    }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #FF6200;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 600;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .cart-count.bump {
+      animation: bump 0.3s ease;
+    }
+    @keyframes bump {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+      100% { transform: scale(1); }
+    }
+
+    /* responsive nav (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* ----- LAYOUT PRINCIPAL (2 colonnes) ----- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+
+    /* colonne gauche */
+    .product-left {
+      background: #fff;
+      border-radius: 28px;
+      padding: 30px 30px 40px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f0ede8;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      color: #b7a99a;
+      background-image: radial-gradient(circle at 30% 30%, #f5f0ea, #ddd6cc);
+      transition: background 0.3s;
+    }
+    .product-image i {
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.04));
+    }
+
+    .product-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .product-sub {
+      font-size: 0.95rem;
+      color: #777;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+    .product-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 18px;
+    }
+    .product-price {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: -0.3px;
+    }
+
+    /* sélecteur tailles */
+    .size-selector {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .size-btn {
+      padding: 8px 18px;
+      border: 1px solid #ddd;
+      background: transparent;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #222;
+    }
+    .size-btn:hover {
+      border-color: #aaa;
+    }
+    .size-btn.active {
+      background: #FF6200;
+      border-color: #FF6200;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(255, 98, 0, 0.25);
+    }
+
+    /* couleurs pastilles */
+    .color-selector {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .color-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      background: #ccc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .color-dot:hover {
+      transform: scale(1.08);
+      border-color: #aaa;
+    }
+    .color-dot.active {
+      border-color: #222;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #222;
+    }
+    .color-dot.active::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .color-dot.ocre { background: #c89f7a; }
+    .color-dot.sapin { background: #3a5f4b; }
+    .color-dot.anthracite { background: #383838; }
+    .color-dot.creme { background: #f1ebe0; }
+    .color-dot.rouille { background: #b55a3b; }
+
+    .color-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* ---- COLONNE DROITE (panier flottant) ---- */
+    .cart-side {
+      background: #fff;
+      border-radius: 28px;
+      padding: 28px 24px 32px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 30px;
+      transition: box-shadow 0.3s;
+    }
+    .cart-side:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+    }
+    .cart-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .cart-item-detail {
+      color: #444;
+    }
+    .cart-item-detail strong {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .cart-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      font-size: 0.85rem;
+      color: #555;
+      margin: 12px 0 16px;
+      background: #f6f5f2;
+      padding: 12px 16px;
+      border-radius: 16px;
+    }
+    .cart-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cart-meta i {
+      color: #888;
+      font-size: 0.75rem;
+    }
+
+    .cart-subtotal, .cart-shipping {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.95rem;
+    }
+    .cart-shipping {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 16px;
+      color: #2a7a4b;
+      font-weight: 500;
+    }
+
+    /* code promo */
+    .promo-area {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+    .promo-area input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 40px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      background: #faf9f7;
+      transition: border 0.2s;
+      outline: none;
+    }
+    .promo-area input:focus {
+      border-color: #888;
+    }
+    .promo-area button {
+      background: #0b0b0b;
+      color: #fff;
+      border: none;
+      padding: 0 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .promo-area button:hover {
+      background: #2a2a2a;
+    }
+    .promo-feedback {
+      font-size: 0.75rem;
+      margin-top: -10px;
+      margin-bottom: 12px;
+      color: #2a7a4b;
+      min-height: 20px;
+    }
+
+    /* boutons panier */
+    .btn-cart {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 60px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn-cart.primary {
+      background: #FF6200;
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(255, 98, 0, 0.25);
+    }
+    .btn-cart.primary:hover {
+      background: #e85a00;
+      transform: scale(1.01);
+      box-shadow: 0 8px 24px rgba(255, 98, 0, 0.3);
+    }
+    .btn-cart.secondary {
+      background: #0b0b0b;
+      color: #fff;
+      margin-top: 8px;
+    }
+    .btn-cart.secondary:hover {
+      background: #1f1f1f;
+      transform: scale(1.01);
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: #777;
+      margin: 16px 0 10px;
+    }
+    .secure-badge i {
+      color: #2a7a4b;
+    }
+
+    .total-large {
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-align: right;
+      letter-spacing: -0.5px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+      margin-top: 8px;
+    }
+    .total-large span {
+      font-weight: 300;
+      font-size: 1rem;
+      color: #888;
+      margin-right: 8px;
+    }
+
+    /* ---- GRILLE PRODUITS (12 cartes) ---- */
+    .grid-title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+      margin-bottom: 28px;
+      margin-top: 10px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 16px 14px 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: default;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-image {
+      background: #f0ede8;
+      border-radius: 16px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      color: #b7a99a;
+      margin-bottom: 14px;
+      background-image: radial-gradient(circle at 30% 30%, #f5f0ea, #ddd6cc);
+    }
+
+    .card-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.2px;
+      margin-bottom: 2px;
+    }
+    .card-price {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card-price .old {
+      font-weight: 400;
+      color: #aaa;
+      text-decoration: line-through;
+      margin-left: 8px;
+      font-size: 0.85rem;
+    }
+    .card-colors {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .card-colors .mini-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.04);
+      background: #ccc;
+    }
+    .mini-dot.ocre { background: #c89f7a; }
+    .mini-dot.sapin { background: #3a5f4b; }
+    .mini-dot.anthracite { background: #383838; }
+    .mini-dot.creme { background: #f1ebe0; }
+    .mini-dot.rouille { background: #b55a3b; }
+    .mini-dot.noir { background: #1a1a1a; }
+    .mini-dot.blanc { background: #f5f2ed; border-color: #ddd; }
+    .mini-dot.marine { background: #1e2b3a; }
+    .mini-dot.rouge { background: #b33a3a; }
+    .mini-dot.beige { background: #d9c8b2; }
+    .mini-dot.gris { background: #8f8f8f; }
+
+    .card-add {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #222;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .card-add:hover {
+      background: #FF6200;
+      color: #fff;
+      border-color: #FF6200;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(255, 98, 0, 0.2);
+    }
+
+    .promo-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #FF6200;
+      color: #fff;
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 30px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ----- RESPONSIVE ----- */
+    @media (max-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr 340px;
+        gap: 28px;
+      }
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .cart-side {
+        position: static;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #0b0b0b;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        padding: 20px 30px;
+        gap: 16px;
+        border-radius: 0 0 20px 20px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .header-black {
+        position: relative;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 12px 30px; }
+      .header-black { padding: 0 16px; margin: 0 -12px 20px -12px; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .product-title { font-size: 1.6rem; }
+      .total-large { font-size: 1.6rem; }
+      .cart-side { padding: 20px 16px; }
+    }
+
+    /* helper */
+    .text-muted { color: #888; }
+    .mt-2 { margin-top: 12px; }
+    .mb-1 { margin-bottom: 4px; }
+    .flex { display: flex; align-items: center; gap: 8px; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header-black">
+    <div class="logo">NØRDLUXX</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#">NOUVEAUTÉS</a>
+      <a href="#">COLLECTIONS</a>
+      <a href="#">VÊTEMENTS</a>
+      <a href="#">ACCESSOIRES</a>
+      <a href="#">À PROPOS</a>
+    </nav>
+    <div class="header-icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+      <div class="cart-icon-wrap">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- COLONNE GAUCHE -->
+    <div class="product-left">
+      <div class="product-image" id="productImage">
+        <i class="fas fa-hoodie" style="font-size:5rem;"></i>
+      </div>
+      <h1 class="product-title">HOODIE OVERSIZE</h1>
+      <div class="product-sub">COTTON PREMIUM – 430G/M²</div>
+      <div class="product-desc">Conçu pour le confort. Tissu premium. Coupe oversize. 430 g/m².</div>
+      <div class="product-price" id="productPrice">79,90 €</div>
+
+      <!-- TAILLES -->
+      <div class="size-selector" id="sizeSelector">
+        <button class="size-btn" data-size="S">S</button>
+        <button class="size-btn active" data-size="M">M</button>
+        <button class="size-btn" data-size="L">L</button>
+        <button class="size-btn" data-size="XL">XL</button>
+        <button class="size-btn" data-size="XXL">XXL</button>
+      </div>
+
+      <!-- COULEURS -->
+      <div class="color-selector" id="colorSelector">
+        <div class="color-dot ocre active" data-color="Ocre" data-price="79.90"></div>
+        <div class="color-dot sapin" data-color="Vert sapin" data-price="79.90"></div>
+        <div class="color-dot anthracite" data-color="Anthracite" data-price="84.90"></div>
+        <div class="color-dot creme" data-color="Crème" data-price="79.90"></div>
+        <div class="color-dot rouille" data-color="Rouille" data-price="79.90"></div>
+      </div>
+      <span class="color-label" id="colorLabel">Ocre</span>
+    </div>
+
+    <!-- COLONNE DROITE (PANIER) -->
+    <aside class="cart-side" id="cartSide">
+      <div class="cart-title">VOTRE PANIER</div>
+
+      <div class="cart-item">
+        <span><strong id="cartItemName">HOODIE OVERSIZE</strong></span>
+        <span id="cartItemPrice">79,90 €</span>
+      </div>
+      <div class="cart-meta">
+        <span><i class="fas fa-circle" style="color:#c89f7a; font-size:0.6rem;"></i> <span id="cartColor">Ocre</span></span>
+        <span><i class="fas fa-ruler"></i> <span id="cartSize">M</span></span>
+        <span><i class="fas fa-hashtag"></i> <span id="cartQty">1</span></span>
+      </div>
+
+      <div class="cart-subtotal">
+        <span>SOUS-TOTAL</span>
+        <span id="subtotalDisplay">79,90 €</span>
+      </div>
+      <div class="cart-shipping">
+        <span>LIVRAISON</span>
+        <span>GRATUITE</span>
+      </div>
+
+      <!-- CODE PROMO -->
+      <div class="promo-area">
+        <input type="text" id="promoInput" placeholder="CODE PROMO" maxlength="10">
+        <button id="promoBtn">APPLIQUER</button>
+      </div>
+      <div class="promo-feedback" id="promoFeedback"></div>
+
+      <!-- BOUTONS -->
+      <button class="btn-cart primary" id="addToCartBtn">
+        <i class="fas fa-shopping-cart"></i> AJOUTER AU PANIER
+      </button>
+      <button class="btn-cart secondary">
+        PASSER À LA CAISSE
+      </button>
+
+      <div class="secure-badge">
+        <i class="fas fa-lock"></i> PAIEMENT SÉCURISÉ
+      </div>
+
+      <div class="total-large">
+        <span>TOTAL</span> <span id="totalDisplay">79,90 €</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- GRILLE PRODUITS -->
+  <div class="grid-title">LES INDISPENSABLES</div>
+  <div class="product-grid" id="productGrid">
+    <!-- les 12 cartes seront injectées par JS -->
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    'use strict';
+
+    // ----- DONNÉES PRODUITS (12 articles) -----
+    const products = [
+      { name: 'T-SHIRT CLASSIC', price: 24.90, colors: ['noir','blanc','gris'], promo: false },
+      { name: 'CARGO PANT', price: 69.90, colors: ['anthracite','sapin','beige'], promo: false },
+      { name: 'CAP SNAPBACK', price: 39.90, colors: ['noir','marine','rouge'], promo: true, oldPrice: 49.90 },
+      { name: 'SOCKS PACK', price: 24.90, colors: ['noir','blanc','gris'], promo: false },
+      { name: 'TOTE BAG', price: 29.90, colors: ['ocre','creme','noir'], promo: false },
+      { name: 'HOODIE ZIP', price: 89.90, colors: ['anthracite','marine','rouille'], promo: false },
+      { name: 'OVERSHIRT', price: 79.90, colors: ['sapin','ocre','gris'], promo: true, oldPrice: 99.90 },
+      { name: 'CREWNECK', price: 69.90, colors: ['creme','noir','rouge'], promo: false },
+      { name: 'TRACK PANTS', price: 59.90, colors: ['noir','marine','beige'], promo: false },
+      { name: 'BEANIE', price: 24.90, colors: ['sapin','rouille','gris'], promo: false },
+      { name: 'SHORTS', price: 49.90, colors: ['ocre','marine','blanc'], promo: false },
+      { name: 'JACKET', price: 119.90, colors: ['anthracite','sapin','noir'], promo: true, oldPrice: 149.90 }
+    ];
+
+    // ----- ÉTAT -----
+    let state = {
+      selectedSize: 'M',
+      selectedColor: 'Ocre',
+      selectedPrice: 79.90,
+      cartCount: 0,
+      cartItems: [], // on garde une trace simple pour le compteur
+      promoCode: null, // 'NORD10' ou null
+      discount: 0,
+    };
+
+    // ----- RÉFÉRENCES DOM -----
+    const sizeBtns = document.querySelectorAll('.size-btn');
+    const colorDots = document.querySelectorAll('.color-dot');
+    const colorLabel = document.getElementById('colorLabel');
+    const productPrice = document.getElementById('productPrice');
+    const cartItemName = document.getElementById('cartItemName');
+    const cartItemPrice = document.getElementById('cartItemPrice');
+    const cartColor = document.getElementById('cartColor');
+    const cartSize = document.getElementById('cartSize');
+    const cartQty = document.getElementById('cartQty');
+    const subtotalDisplay = document.getElementById('subtotalDisplay');
+    const totalDisplay = document.getElementById('totalDisplay');
+    const cartCountEl = document.getElementById('cartCount');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const promoInput = document.getElementById('promoInput');
+    const promoBtn = document.getElementById('promoBtn');
+    const promoFeedback = document.getElementById('promoFeedback');
+    const productImage = document.getElementById('productImage');
+    const gridContainer = document.getElementById('productGrid');
+
+    // ----- FONCTION : mettre à jour l'affichage panier -----
+    function updateCartUI() {
+      const basePrice = state.selectedPrice;
+      let discountAmount = 0;
+      if (state.promoCode === 'NORD10') {
+        discountAmount = basePrice * 0.10;
+      }
+      const finalPrice = basePrice - discountAmount;
+      const formatted = finalPrice.toFixed(2).replace('.', ',') + ' €';
+
+      cartItemPrice.textContent = formatted;
+      subtotalDisplay.textContent = formatted;
+      totalDisplay.textContent = formatted;
+      productPrice.textContent = (basePrice).toFixed(2).replace('.', ',') + ' €';
+      cartColor.textContent = state.selectedColor;
+      cartSize.textContent = state.selectedSize;
+      cartQty.textContent = 1; // toujours 1 pour la démo
+      cartItemName.textContent = 'HOODIE OVERSIZE';
+
+      // compteur panier
+      cartCountEl.textContent = state.cartCount;
+    }
+
+    // ----- FONCTION : appliquer promo -----
+    function applyPromo(code) {
+      const trimmed = code.trim().toUpperCase();
+      if (trimmed === 'NORD10') {
+        state.promoCode = 'NORD10';
+        promoFeedback.textContent = '✅ Code promo NORD10 appliqué (10% de réduction)';
+        promoFeedback.style.color = '#2a7a4b';
+      } else if (trimmed === '') {
+        state.promoCode = null;
+        promoFeedback.textContent = '';
+      } else {
+        state.promoCode = null;
+        promoFeedback.textContent = '❌ Code invalide';
+        promoFeedback.style.color = '#b33a3a';
+      }
+      updateCartUI();
+    }
+
+    // ----- FONCTION : ajouter au panier (avec animation) -----
+    function addToCart() {
+      state.cartCount += 1;
+      cartCountEl.textContent = state.cartCount;
+      cartCountEl.classList.remove('bump');
+      void cartCountEl.offsetWidth; // force reflow
+      cartCountEl.classList.add('bump');
+
+      // petite animation sur le bouton
+      addToCartBtn.style.transform = 'scale(0.96)';
+      setTimeout(() => { addToCartBtn.style.transform = ''; }, 200);
+
+      // (optionnel) on pourrait stocker les vrais articles, mais pour la démo on garde juste le compteur
+      updateCartUI();
+    }
+
+    // ----- INIT : sélection taille -----
+    sizeBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        sizeBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        state.selectedSize = this.dataset.size;
+        cartSize.textContent = state.selectedSize;
+        updateCartUI();
+      });
+    });
+
+    // ----- INIT : sélection couleur -----
+    colorDots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        colorDots.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+        const color = this.dataset.color;
+        state.selectedColor = color;
+        colorLabel.textContent = color;
+        // on peut aussi changer le prix si la couleur impacte le prix (ex: anthracite +5€)
+        const priceAttr = this.dataset.price;
+        if (priceAttr) {
+          state.selectedPrice = parseFloat(priceAttr);
+        } else {
+          state.selectedPrice = 79.90;
+        }
+        // si promo active, on la réapplique
+        if (state.promoCode === 'NORD10') {
+          // on garde la promo
+        } else {
+          state.promoCode = null;
+          promoFeedback.textContent = '';
+        }
+        updateCartUI();
+      });
+    });
+
+    // ----- INIT : bouton ajouter au panier -----
+    addToCartBtn.addEventListener('click', addToCart);
+
+    // ----- INIT : code promo -----
+    promoBtn.addEventListener('click', function() {
+      applyPromo(promoInput.value);
+    });
+    promoInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        applyPromo(promoInput.value);
+      }
+    });
+
+    // ----- INIT : générer la grille de 12 produits -----
+    function renderGrid() {
+      gridContainer.innerHTML = '';
+      products.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+
+        // image (icône)
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'card-image';
+        const icons = ['fa-tshirt','fa-pants','fa-hat-cowboy','fa-socks','fa-bag-shopping','fa-hoodie','fa-shirt','fa-vest','fa-pants','fa-hat-wizard','fa-shorts','fa-jacket'];
+        imgDiv.innerHTML = `<i class="fas ${icons[index % icons.length]}" style="font-size:2.4rem;"></i>`;
+
+        // nom
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'card-name';
+        nameDiv.textContent = p.name;
+
+        // prix
+        const priceDiv = document.createElement('div');
+        priceDiv.className = 'card-price';
+        if (p.promo && p.oldPrice) {
+          priceDiv.innerHTML = `${p.oldPrice.toFixed(2).replace('.',',')} € <span class="old">${p.price.toFixed(2).replace('.',',')} €</span>`;
+        } else {
+          priceDiv.textContent = p.price.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        // couleurs (mini pastilles)
+        const colorsDiv = document.createElement('div');
+        colorsDiv.className = 'card-colors';
+        p.colors.forEach(c => {
+          const dot = document.createElement('span');
+          dot.className = `mini-dot ${c}`;
+          colorsDiv.appendChild(dot);
+        });
+
+        // bouton + (ajouter au panier)
+        const addBtn = document.createElement('div');
+        addBtn.className = 'card-add';
+        addBtn.innerHTML = '<i class="fas fa-plus"></i>';
+        addBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          state.cartCount += 1;
+          cartCountEl.textContent = state.cartCount;
+          cartCountEl.classList.remove('bump');
+          void cartCountEl.offsetWidth;
+          cartCountEl.classList.add('bump');
+          updateCartUI();
+        });
+
+        // badge promo
+        if (p.promo) {
+          const badge = document.createElement('div');
+          badge.className = 'promo-badge';
+          badge.textContent = 'PROMO';
+          card.appendChild(badge);
+        }
+
+        card.appendChild(imgDiv);
+        card.appendChild(nameDiv);
+        card.appendChild(priceDiv);
+        card.appendChild(colorsDiv);
+        card.appendChild(addBtn);
+        gridContainer.appendChild(card);
+      });
+    }
+    renderGrid();
+
+    // ----- MENU MOBILE -----
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+    });
+
+    // ----- INIT FINAL -----
+    // définir la couleur active par défaut (Ocre)
+    document.querySelector('.color-dot.ocre')?.classList.add('active');
+    colorLabel.textContent = 'Ocre';
+    state.selectedColor = 'Ocre';
+    state.selectedPrice = 79.90;
+    updateCartUI();
+
+    // petit fix : si on clique sur une couleur, on met à jour le prix
+    // déjà fait plus haut
+
+    // rendre les icônes de recherche/user inactives (juste UI)
+    document.querySelectorAll('.header-icons i').forEach(icon => {
+      if (icon.closest('.cart-icon-wrap')) return;
+      icon.style.cursor = 'default';
+    });
+
+  })();
+</script>
+</body>
+</html>
