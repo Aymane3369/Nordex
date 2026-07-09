@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ============================================================
+           STYLES COMPLETS
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +33,10 @@
             padding: 0 30px 60px;
             position: relative;
         }
-        /* HEADER */
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
         .header-black {
             background: #0b0b0b;
             color: #fff;
@@ -44,6 +50,10 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: box-shadow 0.3s;
+        }
+        .header-black.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         .logo {
             font-weight: 600;
@@ -79,6 +89,12 @@
             transition: width 0.25s;
         }
         .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a.active {
+            color: #fff;
+        }
+        .nav-links a.active::after {
             width: 100%;
         }
         .header-icons {
@@ -132,7 +148,80 @@
             cursor: pointer;
         }
 
-        /* MAIN GRID */
+        /* ============================================================
+           PROMO BANNER
+           ============================================================ */
+        #promoBanner {
+            background: #FF6200;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-radius: 0 0 20px 20px;
+            margin: -30px -30px 30px -30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        #promoBanner .close-banner {
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        #promoBanner .close-banner:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           TOAST NOTIFICATIONS
+           ============================================================ */
+        #toastContainer {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .toast {
+            padding: 16px 20px;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            animation: slideIn 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toast.success { background: #2a7a4b; }
+        .toast.error { background: #b33a3a; }
+        .toast.info { background: #1a1a1a; }
+        .toast .toast-icon { font-size: 1.2rem; }
+        .toast .toast-close {
+            margin-left: auto;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .toast .toast-close:hover { opacity: 1; }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ============================================================
+           MAIN GRID
+           ============================================================ */
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 380px;
@@ -196,6 +285,18 @@
             margin-bottom: 24px;
             letter-spacing: -0.3px;
         }
+        .product-stock {
+            font-size: 0.85rem;
+            color: #2a7a4b;
+            margin-bottom: 16px;
+        }
+        .product-stock.out-of-stock {
+            color: #b33a3a;
+        }
+
+        /* ============================================================
+           TAILLES
+           ============================================================ */
         .size-selector {
             display: flex;
             gap: 10px;
@@ -223,6 +324,14 @@
             color: #fff;
             box-shadow: 0 4px 10px rgba(255, 98, 0, 0.25);
         }
+        .size-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* ============================================================
+           COULEURS
+           ============================================================ */
         .color-selector {
             display: flex;
             gap: 14px;
@@ -259,40 +368,17 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
-        .color-dot.ocre {
-            background: #c89f7a;
-        }
-        .color-dot.sapin {
-            background: #3a5f4b;
-        }
-        .color-dot.anthracite {
-            background: #383838;
-        }
-        .color-dot.creme {
-            background: #f1ebe0;
-        }
-        .color-dot.rouille {
-            background: #b55a3b;
-        }
-        .color-dot.noir {
-            background: #1a1a1a;
-        }
-        .color-dot.blanc {
-            background: #f5f2ed;
-            border-color: #ddd;
-        }
-        .color-dot.marine {
-            background: #1e2b3a;
-        }
-        .color-dot.rouge {
-            background: #b33a3a;
-        }
-        .color-dot.beige {
-            background: #d9c8b2;
-        }
-        .color-dot.gris {
-            background: #8f8f8f;
-        }
+        .color-dot.ocre { background: #c89f7a; }
+        .color-dot.sapin { background: #3a5f4b; }
+        .color-dot.anthracite { background: #383838; }
+        .color-dot.creme { background: #f1ebe0; }
+        .color-dot.rouille { background: #b55a3b; }
+        .color-dot.noir { background: #1a1a1a; }
+        .color-dot.blanc { background: #f5f2ed; border-color: #ddd; }
+        .color-dot.marine { background: #1e2b3a; }
+        .color-dot.rouge { background: #b33a3a; }
+        .color-dot.beige { background: #d9c8b2; }
+        .color-dot.gris { background: #8f8f8f; }
         .color-label {
             font-size: 0.8rem;
             color: #888;
@@ -300,7 +386,9 @@
             display: block;
         }
 
-        /* CART SIDE */
+        /* ============================================================
+           PANIER (CART SIDE)
+           ============================================================ */
         .cart-side {
             background: #fff;
             border-radius: 28px;
@@ -336,45 +424,70 @@
         .cart-item {
             display: flex;
             justify-content: space-between;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
+            font-size: 0.9rem;
+            padding: 8px 0;
             align-items: center;
+            border-bottom: 1px solid #f5f5f5;
         }
-        .cart-item-detail {
-            color: #444;
+        .cart-item:last-child {
+            border-bottom: none;
         }
-        .cart-item-detail strong {
-            font-weight: 600;
-            color: #1a1a1a;
+        .cart-item-info {
+            flex: 1;
         }
-        .cart-item .remove-item {
+        .cart-item-name {
+            font-weight: 500;
+        }
+        .cart-item-meta {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cart-item-actions .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-item-actions .qty-btn:hover {
+            border-color: #FF6200;
+            color: #FF6200;
+        }
+        .cart-item-actions .qty-num {
+            min-width: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .cart-item-actions .remove-item {
             color: #b33a3a;
             cursor: pointer;
             font-size: 0.8rem;
-            margin-left: 8px;
+            margin-left: 4px;
         }
-        .cart-item .remove-item:hover {
+        .cart-item-actions .remove-item:hover {
             text-decoration: underline;
         }
-        .cart-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 20px;
-            font-size: 0.85rem;
-            color: #555;
-            margin: 12px 0 16px;
-            background: #f6f5f2;
-            padding: 12px 16px;
-            border-radius: 16px;
-        }
-        .cart-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .cart-meta i {
+        .cart-empty {
+            text-align: center;
+            padding: 30px 0;
             color: #888;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .cart-empty i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 12px;
         }
         .cart-subtotal,
         .cart-shipping {
@@ -389,6 +502,17 @@
             color: #2a7a4b;
             font-weight: 500;
         }
+        .cart-discount {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.9rem;
+            color: #2a7a4b;
+        }
+
+        /* ============================================================
+           CODE PROMO
+           ============================================================ */
         .promo-area {
             display: flex;
             gap: 10px;
@@ -429,9 +553,14 @@
             font-size: 0.75rem;
             margin-top: -10px;
             margin-bottom: 12px;
-            color: #2a7a4b;
             min-height: 20px;
         }
+        .promo-feedback.success { color: #2a7a4b; }
+        .promo-feedback.error { color: #b33a3a; }
+
+        /* ============================================================
+           BOUTONS
+           ============================================================ */
         .btn-cart {
             width: 100%;
             padding: 16px;
@@ -457,6 +586,11 @@
             background: #e85a00;
             transform: scale(1.01);
             box-shadow: 0 8px 24px rgba(255, 98, 0, 0.3);
+        }
+        .btn-cart.primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
         .btn-cart.secondary {
             background: #0b0b0b;
@@ -494,8 +628,15 @@
             color: #888;
             margin-right: 8px;
         }
+        .total-large .discount-tag {
+            font-size: 0.8rem;
+            color: #2a7a4b;
+            font-weight: 500;
+        }
 
-        /* GRID */
+        /* ============================================================
+           GRILLE PRODUITS
+           ============================================================ */
         .grid-title {
             font-size: 1.6rem;
             font-weight: 500;
@@ -569,40 +710,17 @@
             border: 1px solid rgba(0, 0, 0, 0.04);
             background: #ccc;
         }
-        .mini-dot.ocre {
-            background: #c89f7a;
-        }
-        .mini-dot.sapin {
-            background: #3a5f4b;
-        }
-        .mini-dot.anthracite {
-            background: #383838;
-        }
-        .mini-dot.creme {
-            background: #f1ebe0;
-        }
-        .mini-dot.rouille {
-            background: #b55a3b;
-        }
-        .mini-dot.noir {
-            background: #1a1a1a;
-        }
-        .mini-dot.blanc {
-            background: #f5f2ed;
-            border-color: #ddd;
-        }
-        .mini-dot.marine {
-            background: #1e2b3a;
-        }
-        .mini-dot.rouge {
-            background: #b33a3a;
-        }
-        .mini-dot.beige {
-            background: #d9c8b2;
-        }
-        .mini-dot.gris {
-            background: #8f8f8f;
-        }
+        .mini-dot.ocre { background: #c89f7a; }
+        .mini-dot.sapin { background: #3a5f4b; }
+        .mini-dot.anthracite { background: #383838; }
+        .mini-dot.creme { background: #f1ebe0; }
+        .mini-dot.rouille { background: #b55a3b; }
+        .mini-dot.noir { background: #1a1a1a; }
+        .mini-dot.blanc { background: #f5f2ed; border-color: #ddd; }
+        .mini-dot.marine { background: #1e2b3a; }
+        .mini-dot.rouge { background: #b33a3a; }
+        .mini-dot.beige { background: #d9c8b2; }
+        .mini-dot.gris { background: #8f8f8f; }
         .card-add {
             position: absolute;
             bottom: 16px;
@@ -642,8 +760,23 @@
             letter-spacing: 0.5px;
             z-index: 2;
         }
+        .out-of-stock-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #b33a3a;
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
 
-        /* PAGES (contenu dynamique) */
+        /* ============================================================
+           PAGES (contenu statique)
+           ============================================================ */
         .page-content {
             display: none;
             background: #fff;
@@ -670,6 +803,11 @@
             border-radius: 20px;
             padding: 24px;
             text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .page-content .page-card:hover {
+            transform: translateY(-4px);
         }
         .page-content .page-card i {
             font-size: 3rem;
@@ -685,7 +823,9 @@
             font-size: 0.9rem;
         }
 
-        /* DETAIL PRODUCT */
+        /* ============================================================
+           DETAIL OVERLAY
+           ============================================================ */
         .detail-overlay {
             display: none;
             position: fixed;
@@ -763,6 +903,7 @@
             display: flex;
             gap: 12px;
             margin-bottom: 16px;
+            flex-wrap: wrap;
         }
         .detail-modal .detail-colors .color-dot {
             width: 32px;
@@ -792,6 +933,10 @@
             border-color: #FF6200;
             color: #fff;
         }
+        .detail-modal .detail-sizes .size-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
         .detail-modal .detail-add {
             width: 100%;
             padding: 16px;
@@ -807,8 +952,14 @@
         .detail-modal .detail-add:hover {
             background: #e85a00;
         }
+        .detail-modal .detail-add:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-        /* RESPONSIVE */
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
         @media (max-width: 1024px) {
             .main-grid {
                 grid-template-columns: 1fr 340px;
@@ -863,6 +1014,10 @@
             .detail-modal {
                 padding: 24px;
             }
+            #promoBanner {
+                margin: -20px -20px 20px -20px;
+                padding: 8px 16px;
+            }
         }
         @media (max-width: 480px) {
             .container {
@@ -885,18 +1040,56 @@
             .cart-side {
                 padding: 20px 16px;
             }
+            #toastContainer {
+                right: 10px;
+                left: 10px;
+                max-width: 100%;
+            }
+        }
+
+        /* ============================================================
+           UTILITIES
+           ============================================================ */
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
 
-        <!-- HEADER -->
-        <header class="header-black">
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <header class="header-black" id="mainHeader">
             <div class="logo" id="homeLogo">NØRDLUXX</div>
             <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
             <nav class="nav-links" id="navLinks">
-                <a data-page="nouveautes">NOUVEAUTÉS</a>
+                <a data-page="catalogue" class="active">NOUVEAUTÉS</a>
                 <a data-page="collections">COLLECTIONS</a>
                 <a data-page="vetements">VÊTEMENTS</a>
                 <a data-page="accessoires">ACCESSOIRES</a>
@@ -912,16 +1105,18 @@
             </div>
         </header>
 
-        <!-- PAGES STATIQUES -->
+        <!-- ============================================================
+        PROMO BANNER
+        ============================================================ -->
+        <div id="promoBanner">
+            <span>🎉 <strong>CODE PROMO : NORD10</strong> — 10% de réduction sur tout le site !</span>
+            <span class="close-banner" id="closeBannerBtn">&times;</span>
+        </div>
+
+        <!-- ============================================================
+        PAGES STATIQUES
+        ============================================================ -->
         <div id="pageContainer">
-            <div class="page-content" id="page-nouveautes">
-                <h2>✨ Nouveautés</h2>
-                <div class="page-grid">
-                    <div class="page-card"><i class="fas fa-hoodie"></i><h3>Hoodie Zip</h3><p>89,90 €</p></div>
-                    <div class="page-card"><i class="fas fa-vest"></i><h3>Overshirt</h3><p>79,90 €</p></div>
-                    <div class="page-card"><i class="fas fa-hat-cowboy"></i><h3>Snapback</h3><p>39,90 €</p></div>
-                </div>
-            </div>
             <div class="page-content" id="page-collections">
                 <h2>📦 Collections</h2>
                 <div class="page-grid">
@@ -954,7 +1149,9 @@
             </div>
         </div>
 
-        <!-- MAIN GRID -->
+        <!-- ============================================================
+        MAIN GRID (Catalogue)
+        ============================================================ -->
         <div class="main-grid" id="mainGrid">
             <div class="product-left" id="productLeft">
                 <div class="product-image" id="productImage">
@@ -964,43 +1161,33 @@
                 <div class="product-sub" id="productSub">COTTON PREMIUM – 430G/M²</div>
                 <div class="product-desc" id="productDesc">Conçu pour le confort. Tissu premium. Coupe oversize. 430 g/m².</div>
                 <div class="product-price" id="productPrice">79,90 €</div>
-                <div class="size-selector" id="sizeSelector">
-                    <button class="size-btn" data-size="S">S</button>
-                    <button class="size-btn active" data-size="M">M</button>
-                    <button class="size-btn" data-size="L">L</button>
-                    <button class="size-btn" data-size="XL">XL</button>
-                    <button class="size-btn" data-size="XXL">XXL</button>
-                </div>
-                <div class="color-selector" id="colorSelector">
-                    <div class="color-dot ocre active" data-color="Ocre" data-price="79.90" data-img="ocre"></div>
-                    <div class="color-dot sapin" data-color="Vert sapin" data-price="79.90" data-img="sapin"></div>
-                    <div class="color-dot anthracite" data-color="Anthracite" data-price="84.90" data-img="anthracite"></div>
-                    <div class="color-dot creme" data-color="Crème" data-price="79.90" data-img="creme"></div>
-                    <div class="color-dot rouille" data-color="Rouille" data-price="79.90" data-img="rouille"></div>
-                </div>
+                <div class="product-stock" id="productStock">✅ En stock</div>
+                <div class="size-selector" id="sizeSelector"></div>
+                <div class="color-selector" id="colorSelector"></div>
                 <span class="color-label" id="colorLabel">Ocre</span>
             </div>
 
-            <!-- CART SIDE -->
+            <!-- ============================================================
+            PANIER (CART SIDE)
+            ============================================================ -->
             <aside class="cart-side" id="cartSide">
                 <div class="cart-title">
                     VOTRE PANIER
                     <span class="clear-cart" id="clearCart">Vider</span>
                 </div>
                 <div id="cartItemsContainer">
-                    <div class="cart-item">
-                        <span><strong id="cartItemName">HOODIE OVERSIZE</strong></span>
-                        <span><span id="cartItemPrice">79,90 €</span><span class="remove-item" data-remove="main">✕</span></span>
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        Votre panier est vide
                     </div>
-                </div>
-                <div class="cart-meta">
-                    <span><i class="fas fa-circle" style="color:#c89f7a;font-size:0.6rem;"></i> <span id="cartColor">Ocre</span></span>
-                    <span><i class="fas fa-ruler"></i> <span id="cartSize">M</span></span>
-                    <span><i class="fas fa-hashtag"></i> <span id="cartQty">1</span></span>
                 </div>
                 <div class="cart-subtotal">
                     <span>SOUS-TOTAL</span>
-                    <span id="subtotalDisplay">79,90 €</span>
+                    <span id="subtotalDisplay">0,00 €</span>
+                </div>
+                <div class="cart-discount hidden" id="discountRow">
+                    <span>RÉDUCTION (NORD10)</span>
+                    <span id="discountDisplay">-0,00 €</span>
                 </div>
                 <div class="cart-shipping">
                     <span>LIVRAISON</span>
@@ -1021,18 +1208,22 @@
                     <i class="fas fa-lock"></i> PAIEMENT SÉCURISÉ
                 </div>
                 <div class="total-large">
-                    <span>TOTAL</span> <span id="totalDisplay">79,90 €</span>
+                    <span>TOTAL</span> <span id="totalDisplay">0,00 €</span>
                 </div>
             </aside>
         </div>
 
-        <!-- GRILLE PRODUITS -->
+        <!-- ============================================================
+        GRILLE PRODUITS
+        ============================================================ -->
         <div class="grid-title">LES INDISPENSABLES</div>
         <div class="product-grid" id="productGrid"></div>
 
     </div>
 
-    <!-- DETAIL OVERLAY -->
+    <!-- ============================================================
+    DETAIL OVERLAY
+    ============================================================ -->
     <div class="detail-overlay" id="detailOverlay">
         <div class="detail-modal">
             <span class="close-detail" id="closeDetail">&times;</span>
@@ -1046,212 +1237,253 @@
         </div>
     </div>
 
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div id="toastContainer"></div>
+
+    <!-- ============================================================
+    JAVASCRIPT COMPLET
+    ============================================================ -->
     <script>
         (function() {
             'use strict';
 
-            // ----- PRODUITS (base de données) -----
-            const productDB = {
-                'HOODIE OVERSIZE': {
-                    name: 'HOODIE OVERSIZE',
-                    sub: 'COTTON PREMIUM – 430G/M²',
-                    desc: 'Conçu pour le confort. Tissu premium. Coupe oversize. 430 g/m².',
-                    basePrice: 79.90,
-                    colors: ['ocre', 'sapin', 'anthracite', 'creme', 'rouille'],
-                    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                    images: {
-                        ocre: 'https://picsum.photos/seed/ocre/400/400',
-                        sapin: 'https://picsum.photos/seed/sapin/400/400',
-                        anthracite: 'https://picsum.photos/seed/anthracite/400/400',
-                        creme: 'https://picsum.photos/seed/creme/400/400',
-                        rouille: 'https://picsum.photos/seed/rouille/400/400'
-                    },
-                    icon: 'fa-hoodie'
+            // ================================================================
+            // 1. BASE DE DONNÉES PRODUITS
+            // ================================================================
+            const PRODUCTS = [{
+                id: 'hoodie-oversize',
+                name: 'HOODIE OVERSIZE',
+                sub: 'COTTON PREMIUM – 430G/M²',
+                desc: 'Conçu pour le confort. Tissu premium. Coupe oversize. 430 g/m².',
+                basePrice: 79.90,
+                colors: ['ocre', 'sapin', 'anthracite', 'creme', 'rouille'],
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                stock: { 'S': 10, 'M': 15, 'L': 12, 'XL': 8, 'XXL': 5 },
+                images: {
+                    ocre: 'https://picsum.photos/seed/ocre/400/400',
+                    sapin: 'https://picsum.photos/seed/sapin/400/400',
+                    anthracite: 'https://picsum.photos/seed/anthracite/400/400',
+                    creme: 'https://picsum.photos/seed/creme/400/400',
+                    rouille: 'https://picsum.photos/seed/rouille/400/400'
                 },
-                'T-SHIRT CLASSIC': {
-                    name: 'T-SHIRT CLASSIC',
-                    sub: 'COTON BIO - 180G/M²',
-                    desc: 'Le t-shirt parfait pour le quotidien. Coupe régulière. Coton bio 180g/m².',
-                    basePrice: 24.90,
-                    colors: ['noir', 'blanc', 'gris'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        noir: 'https://picsum.photos/seed/tshirtnoir/400/400',
-                        blanc: 'https://picsum.photos/seed/tshirtblanc/400/400',
-                        gris: 'https://picsum.photos/seed/tshirtgris/400/400'
-                    },
-                    icon: 'fa-tshirt'
+                icon: 'fa-hoodie',
+                promo: false
+            }, {
+                id: 'tshirt-classic',
+                name: 'T-SHIRT CLASSIC',
+                sub: 'COTON BIO - 180G/M²',
+                desc: 'Le t-shirt parfait pour le quotidien. Coupe régulière. Coton bio 180g/m².',
+                basePrice: 24.90,
+                colors: ['noir', 'blanc', 'gris'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 20, 'M': 25, 'L': 18, 'XL': 10 },
+                images: {
+                    noir: 'https://picsum.photos/seed/tshirtnoir/400/400',
+                    blanc: 'https://picsum.photos/seed/tshirtblanc/400/400',
+                    gris: 'https://picsum.photos/seed/tshirtgris/400/400'
                 },
-                'CARGO PANT': {
-                    name: 'CARGO PANT',
-                    sub: 'COTTON TWILL - 320G/M²',
-                    desc: 'Pantalon cargo avec coupe large. Poches fonctionnelles. Tissu twill résistant.',
-                    basePrice: 69.90,
-                    colors: ['anthracite', 'sapin', 'beige'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        anthracite: 'https://picsum.photos/seed/cargoanthra/400/400',
-                        sapin: 'https://picsum.photos/seed/cargosapin/400/400',
-                        beige: 'https://picsum.photos/seed/cargobeige/400/400'
-                    },
-                    icon: 'fa-pants'
+                icon: 'fa-tshirt',
+                promo: false
+            }, {
+                id: 'cargo-pant',
+                name: 'CARGO PANT',
+                sub: 'COTTON TWILL - 320G/M²',
+                desc: 'Pantalon cargo avec coupe large. Poches fonctionnelles. Tissu twill résistant.',
+                basePrice: 69.90,
+                colors: ['anthracite', 'sapin', 'beige'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 8, 'M': 12, 'L': 10, 'XL': 6 },
+                images: {
+                    anthracite: 'https://picsum.photos/seed/cargoanthra/400/400',
+                    sapin: 'https://picsum.photos/seed/cargosapin/400/400',
+                    beige: 'https://picsum.photos/seed/cargobeige/400/400'
                 },
-                'CAP SNAPBACK': {
-                    name: 'CAP SNAPBACK',
-                    sub: 'LAINE & COTON',
-                    desc: 'Casquette snapback ajustable. Visière courbée. Broderie NØRDLUXX.',
-                    basePrice: 39.90,
-                    colors: ['noir', 'marine', 'rouge'],
-                    sizes: ['Taille unique'],
-                    images: {
-                        noir: 'https://picsum.photos/seed/capnoir/400/400',
-                        marine: 'https://picsum.photos/seed/capmarine/400/400',
-                        rouge: 'https://picsum.photos/seed/caprouge/400/400'
-                    },
-                    icon: 'fa-hat-cowboy'
+                icon: 'fa-pants',
+                promo: false
+            }, {
+                id: 'cap-snapback',
+                name: 'CAP SNAPBACK',
+                sub: 'LAINE & COTON',
+                desc: 'Casquette snapback ajustable. Visière courbée. Broderie NØRDLUXX.',
+                basePrice: 39.90,
+                colors: ['noir', 'marine', 'rouge'],
+                sizes: ['Taille unique'],
+                stock: { 'Taille unique': 30 },
+                images: {
+                    noir: 'https://picsum.photos/seed/capnoir/400/400',
+                    marine: 'https://picsum.photos/seed/capmarine/400/400',
+                    rouge: 'https://picsum.photos/seed/caprouge/400/400'
                 },
-                'SOCKS PACK': {
-                    name: 'SOCKS PACK',
-                    sub: 'COTON BIO - LOT DE 3',
-                    desc: 'Lot de 3 paires de chaussettes hautes. Coton bio certifié. Confort toute la journée.',
-                    basePrice: 24.90,
-                    colors: ['noir', 'blanc', 'gris'],
-                    sizes: ['Taille unique'],
-                    images: {
-                        noir: 'https://picsum.photos/seed/socksnoir/400/400',
-                        blanc: 'https://picsum.photos/seed/socksblanc/400/400',
-                        gris: 'https://picsum.photos/seed/socksgris/400/400'
-                    },
-                    icon: 'fa-socks'
+                icon: 'fa-hat-cowboy',
+                promo: true,
+                oldPrice: 49.90
+            }, {
+                id: 'socks-pack',
+                name: 'SOCKS PACK',
+                sub: 'COTON BIO - LOT DE 3',
+                desc: 'Lot de 3 paires de chaussettes hautes. Coton bio certifié. Confort toute la journée.',
+                basePrice: 24.90,
+                colors: ['noir', 'blanc', 'gris'],
+                sizes: ['Taille unique'],
+                stock: { 'Taille unique': 40 },
+                images: {
+                    noir: 'https://picsum.photos/seed/socksnoir/400/400',
+                    blanc: 'https://picsum.photos/seed/socksblanc/400/400',
+                    gris: 'https://picsum.photos/seed/socksgris/400/400'
                 },
-                'TOTE BAG': {
-                    name: 'TOTE BAG',
-                    sub: 'COTON BIO - 100%',
-                    desc: 'Sac tote en coton bio. Grande capacité. Impressions NØRDLUXX.',
-                    basePrice: 29.90,
-                    colors: ['ocre', 'creme', 'noir'],
-                    sizes: ['Taille unique'],
-                    images: {
-                        ocre: 'https://picsum.photos/seed/toteocre/400/400',
-                        creme: 'https://picsum.photos/seed/totecreme/400/400',
-                        noir: 'https://picsum.photos/seed/totenoire/400/400'
-                    },
-                    icon: 'fa-bag-shopping'
+                icon: 'fa-socks',
+                promo: false
+            }, {
+                id: 'tote-bag',
+                name: 'TOTE BAG',
+                sub: 'COTON BIO - 100%',
+                desc: 'Sac tote en coton bio. Grande capacité. Impressions NØRDLUXX.',
+                basePrice: 29.90,
+                colors: ['ocre', 'creme', 'noir'],
+                sizes: ['Taille unique'],
+                stock: { 'Taille unique': 25 },
+                images: {
+                    ocre: 'https://picsum.photos/seed/toteocre/400/400',
+                    creme: 'https://picsum.photos/seed/totecreme/400/400',
+                    noir: 'https://picsum.photos/seed/totenoire/400/400'
                 },
-                'HOODIE ZIP': {
-                    name: 'HOODIE ZIP',
-                    sub: 'COTTON PREMIUM - 450G/M²',
-                    desc: 'Hoodie zip épais. Capuche doublée. Fermeture YKK. Coupe régulière.',
-                    basePrice: 89.90,
-                    colors: ['anthracite', 'marine', 'rouille'],
-                    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-                    images: {
-                        anthracite: 'https://picsum.photos/seed/zipanthra/400/400',
-                        marine: 'https://picsum.photos/seed/zipmarine/400/400',
-                        rouille: 'https://picsum.photos/seed/ziprouille/400/400'
-                    },
-                    icon: 'fa-hoodie'
+                icon: 'fa-bag-shopping',
+                promo: false
+            }, {
+                id: 'hoodie-zip',
+                name: 'HOODIE ZIP',
+                sub: 'COTTON PREMIUM - 450G/M²',
+                desc: 'Hoodie zip épais. Capuche doublée. Fermeture YKK. Coupe régulière.',
+                basePrice: 89.90,
+                colors: ['anthracite', 'marine', 'rouille'],
+                sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+                stock: { 'S': 6, 'M': 10, 'L': 8, 'XL': 5, 'XXL': 3 },
+                images: {
+                    anthracite: 'https://picsum.photos/seed/zipanthra/400/400',
+                    marine: 'https://picsum.photos/seed/zipmarine/400/400',
+                    rouille: 'https://picsum.photos/seed/ziprouille/400/400'
                 },
-                'OVERSHIRT': {
-                    name: 'OVERSHIRT',
-                    sub: 'COTTON & LIN',
-                    desc: 'Chemise oversize en coton et lin. Coupe ample. Parfaite pour les mid-saisons.',
-                    basePrice: 79.90,
-                    colors: ['sapin', 'ocre', 'gris'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        sapin: 'https://picsum.photos/seed/oversapin/400/400',
-                        ocre: 'https://picsum.photos/seed/overocre/400/400',
-                        gris: 'https://picsum.photos/seed/overgris/400/400'
-                    },
-                    icon: 'fa-vest'
+                icon: 'fa-hoodie',
+                promo: false
+            }, {
+                id: 'overshirt',
+                name: 'OVERSHIRT',
+                sub: 'COTTON & LIN',
+                desc: 'Chemise oversize en coton et lin. Coupe ample. Parfaite pour les mid-saisons.',
+                basePrice: 79.90,
+                colors: ['sapin', 'ocre', 'gris'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 7, 'M': 11, 'L': 9, 'XL': 4 },
+                images: {
+                    sapin: 'https://picsum.photos/seed/oversapin/400/400',
+                    ocre: 'https://picsum.photos/seed/overocre/400/400',
+                    gris: 'https://picsum.photos/seed/overgris/400/400'
                 },
-                'CREWNECK': {
-                    name: 'CREWNECK',
-                    sub: 'LAINE MÉRINOS - 100%',
-                    desc: 'Pull col rond en laine mérinos. Doux et chaud. Coupe classique.',
-                    basePrice: 69.90,
-                    colors: ['creme', 'noir', 'rouge'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        creme: 'https://picsum.photos/seed/crewncreme/400/400',
-                        noir: 'https://picsum.photos/seed/crewnnoir/400/400',
-                        rouge: 'https://picsum.photos/seed/crewnrouge/400/400'
-                    },
-                    icon: 'fa-shirt'
+                icon: 'fa-vest',
+                promo: true,
+                oldPrice: 99.90
+            }, {
+                id: 'crewnck',
+                name: 'CREWNECK',
+                sub: 'LAINE MÉRINOS - 100%',
+                desc: 'Pull col rond en laine mérinos. Doux et chaud. Coupe classique.',
+                basePrice: 69.90,
+                colors: ['creme', 'noir', 'rouge'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 9, 'M': 14, 'L': 10, 'XL': 6 },
+                images: {
+                    creme: 'https://picsum.photos/seed/crewncreme/400/400',
+                    noir: 'https://picsum.photos/seed/crewnnoir/400/400',
+                    rouge: 'https://picsum.photos/seed/crewnrouge/400/400'
                 },
-                'TRACK PANTS': {
-                    name: 'TRACK PANTS',
-                    sub: 'POLYESTER RECYCLÉ',
-                    desc: 'Pantalon de jogging en polyester recyclé. Coupe droite. Élastique à la taille.',
-                    basePrice: 59.90,
-                    colors: ['noir', 'marine', 'beige'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        noir: 'https://picsum.photos/seed/tracknoir/400/400',
-                        marine: 'https://picsum.photos/seed/trackmarine/400/400',
-                        beige: 'https://picsum.photos/seed/trackbeige/400/400'
-                    },
-                    icon: 'fa-pants'
+                icon: 'fa-shirt',
+                promo: false
+            }, {
+                id: 'track-pants',
+                name: 'TRACK PANTS',
+                sub: 'POLYESTER RECYCLÉ',
+                desc: 'Pantalon de jogging en polyester recyclé. Coupe droite. Élastique à la taille.',
+                basePrice: 59.90,
+                colors: ['noir', 'marine', 'beige'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 10, 'M': 15, 'L': 12, 'XL': 8 },
+                images: {
+                    noir: 'https://picsum.photos/seed/tracknoir/400/400',
+                    marine: 'https://picsum.photos/seed/trackmarine/400/400',
+                    beige: 'https://picsum.photos/seed/trackbeige/400/400'
                 },
-                'BEANIE': {
-                    name: 'BEANIE',
-                    sub: 'LAINE MÉRINOS',
-                    desc: 'Bonnet en laine mérinos. Tour de tête ajustable. Finition côtes.',
-                    basePrice: 24.90,
-                    colors: ['sapin', 'rouille', 'gris'],
-                    sizes: ['Taille unique'],
-                    images: {
-                        sapin: 'https://picsum.photos/seed/beaniesapin/400/400',
-                        rouille: 'https://picsum.photos/seed/beaniepouille/400/400',
-                        gris: 'https://picsum.photos/seed/beaniegris/400/400'
-                    },
-                    icon: 'fa-hat-wizard'
+                icon: 'fa-pants',
+                promo: false
+            }, {
+                id: 'beanie',
+                name: 'BEANIE',
+                sub: 'LAINE MÉRINOS',
+                desc: 'Bonnet en laine mérinos. Tour de tête ajustable. Finition côtes.',
+                basePrice: 24.90,
+                colors: ['sapin', 'rouille', 'gris'],
+                sizes: ['Taille unique'],
+                stock: { 'Taille unique': 35 },
+                images: {
+                    sapin: 'https://picsum.photos/seed/beaniesapin/400/400',
+                    rouille: 'https://picsum.photos/seed/beaniepouille/400/400',
+                    gris: 'https://picsum.photos/seed/beaniegris/400/400'
                 },
-                'SHORTS': {
-                    name: 'SHORTS',
-                    sub: 'COTON BIO - 220G/M²',
-                    desc: 'Short en coton bio. Coupe confortable. Poches latérales.',
-                    basePrice: 49.90,
-                    colors: ['ocre', 'marine', 'blanc'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        ocre: 'https://picsum.photos/seed/shortocre/400/400',
-                        marine: 'https://picsum.photos/seed/shortmarine/400/400',
-                        blanc: 'https://picsum.photos/seed/shortblanc/400/400'
-                    },
-                    icon: 'fa-shorts'
+                icon: 'fa-hat-wizard',
+                promo: false
+            }, {
+                id: 'shorts',
+                name: 'SHORTS',
+                sub: 'COTON BIO - 220G/M²',
+                desc: 'Short en coton bio. Coupe confortable. Poches latérales.',
+                basePrice: 49.90,
+                colors: ['ocre', 'marine', 'blanc'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 12, 'M': 18, 'L': 14, 'XL': 8 },
+                images: {
+                    ocre: 'https://picsum.photos/seed/shortocre/400/400',
+                    marine: 'https://picsum.photos/seed/shortmarine/400/400',
+                    blanc: 'https://picsum.photos/seed/shortblanc/400/400'
                 },
-                'JACKET': {
-                    name: 'JACKET',
-                    sub: 'COTTON & POLYESTER',
-                    desc: 'Veste légère déperlante. Capuche amovible. Parfaite pour la mi-saison.',
-                    basePrice: 119.90,
-                    colors: ['anthracite', 'sapin', 'noir'],
-                    sizes: ['S', 'M', 'L', 'XL'],
-                    images: {
-                        anthracite: 'https://picsum.photos/seed/jacketanthra/400/400',
-                        sapin: 'https://picsum.photos/seed/jacketsapin/400/400',
-                        noir: 'https://picsum.photos/seed/jacketnoir/400/400'
-                    },
-                    icon: 'fa-jacket'
-                }
-            };
+                icon: 'fa-shorts',
+                promo: false
+            }, {
+                id: 'jacket',
+                name: 'JACKET',
+                sub: 'COTTON & POLYESTER',
+                desc: 'Veste légère déperlante. Capuche amovible. Parfaite pour la mi-saison.',
+                basePrice: 119.90,
+                colors: ['anthracite', 'sapin', 'noir'],
+                sizes: ['S', 'M', 'L', 'XL'],
+                stock: { 'S': 5, 'M': 8, 'L': 6, 'XL': 4 },
+                images: {
+                    anthracite: 'https://picsum.photos/seed/jacketanthra/400/400',
+                    sapin: 'https://picsum.photos/seed/jacketsapin/400/400',
+                    noir: 'https://picsum.photos/seed/jacketnoir/400/400'
+                },
+                icon: 'fa-jacket',
+                promo: true,
+                oldPrice: 149.90
+            }];
 
-            // ----- ÉTAT -----
+            // ================================================================
+            // 2. ÉTAT
+            // ================================================================
             let state = {
-                currentProduct: 'HOODIE OVERSIZE',
+                currentProductId: 'hoodie-oversize',
                 selectedSize: 'M',
-                selectedColor: 'Ocre',
-                selectedColorKey: 'ocre',
-                selectedPrice: 79.90,
-                cartItems: [], // { id, name, color, size, price, qty, img }
+                selectedColor: 'ocre',
+                selectedColorName: 'Ocre',
+                cart: [],
                 promoCode: null,
-                discount: 0,
-                currentPage: null
+                discountRate: 0,
+                currentPage: 'catalogue'
             };
 
-            // ----- RÉFÉRENCES DOM -----
+            // ================================================================
+            // 3. RÉFÉRENCES DOM
+            // ================================================================
             const $ = (sel) => document.querySelector(sel);
             const $$ = (sel) => document.querySelectorAll(sel);
 
@@ -1260,15 +1492,14 @@
             const productSub = $('#productSub');
             const productDesc = $('#productDesc');
             const productPrice = $('#productPrice');
-            const sizeBtns = $$('.size-btn');
-            const colorDots = $$('.color-dot');
+            const productStock = $('#productStock');
+            const sizeSelector = $('#sizeSelector');
+            const colorSelector = $('#colorSelector');
             const colorLabel = $('#colorLabel');
-            const cartItemName = $('#cartItemName');
-            const cartItemPrice = $('#cartItemPrice');
-            const cartColor = $('#cartColor');
-            const cartSize = $('#cartSize');
-            const cartQty = $('#cartQty');
+            const cartItemsContainer = $('#cartItemsContainer');
             const subtotalDisplay = $('#subtotalDisplay');
+            const discountDisplay = $('#discountDisplay');
+            const discountRow = $('#discountRow');
             const totalDisplay = $('#totalDisplay');
             const cartCountEl = $('#cartCount');
             const addToCartBtn = $('#addToCartBtn');
@@ -1276,6 +1507,7 @@
             const promoBtn = $('#promoBtn');
             const promoFeedback = $('#promoFeedback');
             const clearCartBtn = $('#clearCart');
+            const checkoutBtn = $('#checkoutBtn');
             const gridContainer = $('#productGrid');
             const detailOverlay = $('#detailOverlay');
             const closeDetail = $('#closeDetail');
@@ -1286,22 +1518,27 @@
             const detailColors = $('#detailColors');
             const detailSizes = $('#detailSizes');
             const detailAddBtn = $('#detailAddBtn');
-            const cartContainer = $('#cartItemsContainer');
             const mainGrid = $('#mainGrid');
             const pageContainer = $('#pageContainer');
             const navLinks = $$('.nav-links a');
             const homeLogo = $('#homeLogo');
             const searchIcon = $('#searchIcon');
             const cartIcon = $('#cartIcon');
-            const checkoutBtn = $('#checkoutBtn');
+            const toastContainer = $('#toastContainer');
+            const navToggle = $('#navToggle');
+            const navLinksEl = $('#navLinks');
+            const closeBannerBtn = $('#closeBannerBtn');
+            const promoBanner = $('#promoBanner');
 
-            // ----- FONCTIONS UTILITAIRES -----
+            // ================================================================
+            // 4. UTILITAIRES
+            // ================================================================
             function formatPrice(p) {
                 return p.toFixed(2).replace('.', ',') + ' €';
             }
 
-            function getProductData(name) {
-                return productDB[name] || productDB['HOODIE OVERSIZE'];
+            function getProduct(id) {
+                return PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
             }
 
             function getColorHex(key) {
@@ -1338,388 +1575,522 @@
                 return map[key] || key;
             }
 
-            // ----- AFFICHAGE PRODUIT PRINCIPAL -----
-            function displayProduct(productNameKey) {
-                const data = getProductData(productNameKey);
-                state.currentProduct = productNameKey;
+            function getStock(productId, size) {
+                const product = getProduct(productId);
+                if (!product || !product.stock) return 0;
+                return product.stock[size] || 0;
+            }
 
-                // Mettre à jour les infos
-                productName.textContent = data.name;
-                productSub.textContent = data.sub;
-                productDesc.textContent = data.desc;
+            function getTotal() {
+                let total = 0;
+                state.cart.forEach(item => {
+                    total += item.price * item.qty;
+                });
+                if (state.promoCode === 'NORD10') {
+                    total = total * 0.90;
+                }
+                return total;
+            }
 
-                // Prix de base
-                state.selectedPrice = data.basePrice;
-                productPrice.textContent = formatPrice(data.basePrice);
+            function getSubtotal() {
+                let total = 0;
+                state.cart.forEach(item => {
+                    total += item.price * item.qty;
+                });
+                return total;
+            }
+
+            function getDiscountAmount() {
+                if (state.promoCode === 'NORD10') {
+                    return getSubtotal() * 0.10;
+                }
+                return 0;
+            }
+
+            // ================================================================
+            // 5. TOAST NOTIFICATIONS
+            // ================================================================
+            function showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const iconMap = {
+                    success: 'fa-check-circle',
+                    error: 'fa-exclamation-circle',
+                    info: 'fa-info-circle'
+                };
+                toast.innerHTML = `
+                    <span class="toast-icon"><i class="fas ${iconMap[type] || iconMap.info}"></i></span>
+                    <span>${message}</span>
+                    <span class="toast-close">&times;</span>
+                `;
+                toastContainer.appendChild(toast);
+
+                toast.querySelector('.toast-close').addEventListener('click', function() {
+                    toast.remove();
+                });
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => toast.remove(), 400);
+                }, 4000);
+            }
+
+            // ================================================================
+            // 6. SAUVEGARDE / CHARGEMENT DU PANIER (localStorage)
+            // ================================================================
+            function saveCart() {
+                try {
+                    localStorage.setItem('nordluxxCart', JSON.stringify(state.cart));
+                } catch (e) { /* ignore */ }
+            }
+
+            function loadCart() {
+                try {
+                    const data = localStorage.getItem('nordluxxCart');
+                    if (data) {
+                        state.cart = JSON.parse(data);
+                    }
+                } catch (e) { /* ignore */ }
+            }
+
+            // ================================================================
+            // 7. RENDU DU PRODUIT PRINCIPAL
+            // ================================================================
+            function renderProduct(productId) {
+                const product = getProduct(productId);
+                state.currentProductId = productId;
+
+                // Infos
+                productName.textContent = product.name;
+                productSub.textContent = product.sub;
+                productDesc.textContent = product.desc;
+                productPrice.textContent = formatPrice(product.basePrice);
 
                 // Image
-                const imgKey = state.selectedColorKey || data.colors[0];
-                const imgUrl = data.images[imgKey];
+                const imgKey = state.selectedColor || product.colors[0];
+                const imgUrl = product.images[imgKey];
                 if (imgUrl) {
-                    productImage.innerHTML = `<img src="${imgUrl}" alt="${data.name}">`;
+                    productImage.innerHTML = `<img src="${imgUrl}" alt="${product.name}">`;
                 } else {
-                    productImage.innerHTML = `<i class="fas ${data.icon}"></i>`;
+                    productImage.innerHTML = `<i class="fas ${product.icon}"></i>`;
+                }
+
+                // Stock
+                const stock = getStock(productId, state.selectedSize);
+                if (stock > 0) {
+                    productStock.textContent = `✅ En stock (${stock} disponibles)`;
+                    productStock.className = 'product-stock';
+                } else {
+                    productStock.textContent = '❌ Rupture de stock';
+                    productStock.className = 'product-stock out-of-stock';
                 }
 
                 // Tailles
-                const sizeSelector = $('#sizeSelector');
                 sizeSelector.innerHTML = '';
-                data.sizes.forEach(s => {
+                product.sizes.forEach(s => {
                     const btn = document.createElement('button');
-                    btn.className = 'size-btn' + (s === state.selectedSize ? ' active' : '');
+                    const stockSize = getStock(productId, s);
+                    btn.className = `size-btn${s === state.selectedSize ? ' active' : ''}${stockSize === 0 ? ' disabled' : ''}`;
                     btn.dataset.size = s;
                     btn.textContent = s;
+                    if (stockSize === 0) {
+                        btn.title = 'Rupture de stock';
+                    }
                     btn.addEventListener('click', function() {
+                        if (this.classList.contains('disabled')) return;
                         sizeSelector.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
                         this.classList.add('active');
                         state.selectedSize = this.dataset.size;
-                        cartSize.textContent = state.selectedSize;
+                        renderProduct(productId);
                         updateCartUI();
                     });
                     sizeSelector.appendChild(btn);
                 });
 
                 // Couleurs
-                const colorSelector = $('#colorSelector');
                 colorSelector.innerHTML = '';
-                data.colors.forEach(c => {
+                product.colors.forEach(c => {
                     const dot = document.createElement('div');
-                    dot.className = `color-dot ${c}` + (c === state.selectedColorKey ? ' active' : '');
-                    dot.dataset.color = getColorName(c);
-                    dot.dataset.price = data.basePrice;
-                    dot.dataset.img = c;
+                    dot.className = `color-dot ${c}${c === state.selectedColor ? ' active' : ''}`;
+                    dot.dataset.color = c;
+                    dot.dataset.colorName = getColorName(c);
                     dot.addEventListener('click', function() {
                         colorSelector.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
                         this.classList.add('active');
                         state.selectedColor = this.dataset.color;
-                        state.selectedColorKey = this.dataset.img;
-                        colorLabel.textContent = state.selectedColor;
-                        // Mettre à jour l'image
-                        const imgUrl2 = data.images[state.selectedColorKey];
-                        if (imgUrl2) {
-                            productImage.innerHTML = `<img src="${imgUrl2}" alt="${data.name}">`;
-                        }
-                        // Prix
-                        state.selectedPrice = parseFloat(this.dataset.price) || data.basePrice;
-                        productPrice.textContent = formatPrice(state.selectedPrice);
+                        state.selectedColorName = this.dataset.colorName;
+                        colorLabel.textContent = state.selectedColorName;
+                        renderProduct(productId);
                         updateCartUI();
                     });
                     colorSelector.appendChild(dot);
                 });
 
                 // Sélectionner la couleur active
-                const activeDot = colorSelector.querySelector(`.color-dot.${state.selectedColorKey}`);
+                const activeDot = colorSelector.querySelector(`.color-dot.${state.selectedColor}`);
                 if (activeDot) {
                     colorSelector.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
                     activeDot.classList.add('active');
-                    state.selectedColor = activeDot.dataset.color;
-                    colorLabel.textContent = state.selectedColor;
+                    state.selectedColorName = activeDot.dataset.colorName;
+                    colorLabel.textContent = state.selectedColorName;
                 }
 
-                // Mettre à jour le panier
+                // Prix selon promo
+                if (product.promo && product.oldPrice) {
+                    productPrice.innerHTML = `${formatPrice(product.oldPrice)} <span style="font-weight:400;color:#888;text-decoration:line-through;font-size:1.2rem;">${formatPrice(product.basePrice)}</span>`;
+                } else {
+                    productPrice.textContent = formatPrice(product.basePrice);
+                }
+
                 updateCartUI();
             }
 
-            // ----- MISE À JOUR PANIER -----
-            function updateCartUI() {
-                const data = getProductData(state.currentProduct);
-                const price = state.selectedPrice || data.basePrice;
-
-                // Panier principal
-                cartItemName.textContent = data.name;
-                cartItemPrice.textContent = formatPrice(price);
-                cartColor.textContent = state.selectedColor || 'Ocre';
-                cartSize.textContent = state.selectedSize || 'M';
-                cartQty.textContent = state.cartItems.length > 0 ? state.cartItems.reduce((sum, i) => sum + i.qty, 0) : 1;
-
-                // Sous-total (panier)
-                let subtotal = 0;
-                if (state.cartItems.length > 0) {
-                    state.cartItems.forEach(item => {
-                        subtotal += item.price * item.qty;
-                    });
-                } else {
-                    subtotal = price;
-                }
-
-                // Appliquer promo
-                let discountAmount = 0;
-                if (state.promoCode === 'NORD10') {
-                    discountAmount = subtotal * 0.10;
-                }
-                const total = subtotal - discountAmount;
-
-                subtotalDisplay.textContent = formatPrice(subtotal);
-                totalDisplay.textContent = formatPrice(total);
-
-                // Compteur
-                const totalQty = state.cartItems.reduce((sum, i) => sum + i.qty, 0);
-                cartCountEl.textContent = totalQty > 0 ? totalQty : 0;
-
-                // Afficher les articles du panier
-                renderCartItems();
-            }
-
-            // ----- RENDU DES ARTICLES DU PANIER -----
-            function renderCartItems() {
-                if (state.cartItems.length === 0) {
-                    cartContainer.innerHTML = `
-                        <div style="text-align:center;padding:20px 0;color:#888;font-size:0.9rem;">
-                            <i class="fas fa-shopping-bag" style="font-size:2rem;display:block;margin-bottom:8px;"></i>
+            // ================================================================
+            // 8. RENDU DU PANIER
+            // ================================================================
+            function renderCart() {
+                if (state.cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-bag"></i>
                             Votre panier est vide
                         </div>
                     `;
-                    return;
-                }
+                } else {
+                    cartItemsContainer.innerHTML = '';
+                    state.cart.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'cart-item';
+                        div.innerHTML = `
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-meta">${item.color} - ${item.size}</div>
+                            </div>
+                            <div class="cart-item-actions">
+                                <button class="qty-btn" data-index="${index}" data-dir="-1">−</button>
+                                <span class="qty-num">${item.qty}</span>
+                                <button class="qty-btn" data-index="${index}" data-dir="1">+</button>
+                                <span class="remove-item" data-index="${index}">✕</span>
+                            </div>
+                        `;
+                        cartItemsContainer.appendChild(div);
+                    });
 
-                cartContainer.innerHTML = '';
-                state.cartItems.forEach((item, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'cart-item';
-                    div.innerHTML = `
-                        <span><strong>${item.name}</strong> <span style="font-weight:400;color:#888;font-size:0.8rem;">${item.color} - ${item.size}</span></span>
-                        <span>${formatPrice(item.price * item.qty)} <span class="remove-item" data-index="${index}" style="color:#b33a3a;cursor:pointer;margin-left:8px;">✕</span></span>
-                    `;
-                    cartContainer.appendChild(div);
-                });
+                    // Événements quantités
+                    cartItemsContainer.querySelectorAll('.qty-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const idx = parseInt(this.dataset.index);
+                            const dir = parseInt(this.dataset.dir);
+                            updateCartItem(idx, dir);
+                        });
+                    });
 
-                // Événements suppression
-                cartContainer.querySelectorAll('.remove-item').forEach(el => {
-                    el.addEventListener('click', function() {
-                        const idx = parseInt(this.dataset.index);
-                        if (!isNaN(idx) && idx < state.cartItems.length) {
-                            state.cartItems.splice(idx, 1);
+                    // Événements suppression
+                    cartItemsContainer.querySelectorAll('.remove-item').forEach(el => {
+                        el.addEventListener('click', function() {
+                            const idx = parseInt(this.dataset.index);
+                            state.cart.splice(idx, 1);
+                            saveCart();
+                            renderCart();
                             updateCartUI();
-                            // Animation
                             cartCountEl.classList.remove('bump');
                             void cartCountEl.offsetWidth;
                             cartCountEl.classList.add('bump');
-                        }
+                            showToast('Article supprimé du panier', 'info');
+                        });
                     });
-                });
-            }
-
-            // ----- AJOUTER AU PANIER -----
-            function addToCart(productNameKey, size, color, colorKey, price) {
-                const data = getProductData(productNameKey);
-                const item = {
-                    id: Date.now() + Math.random(),
-                    name: data.name || productNameKey,
-                    size: size || state.selectedSize,
-                    color: color || state.selectedColor,
-                    colorKey: colorKey || state.selectedColorKey,
-                    price: price || state.selectedPrice,
-                    qty: 1,
-                    img: data.images ? data.images[colorKey || state.selectedColorKey] : null
-                };
-
-                // Vérifier si l'article existe déjà (même nom, taille, couleur)
-                const existing = state.cartItems.find(i =>
-                    i.name === item.name && i.size === item.size && i.color === item.color
-                );
-                if (existing) {
-                    existing.qty += 1;
-                } else {
-                    state.cartItems.push(item);
                 }
 
+                updateCartUI();
+            }
+
+            // ================================================================
+            // 9. MISE À JOUR DES TOTAUX
+            // ================================================================
+            function updateCartUI() {
+                const subtotal = getSubtotal();
+                const discount = getDiscountAmount();
+                const total = subtotal - discount;
+
+                subtotalDisplay.textContent = formatPrice(subtotal);
+
+                if (discount > 0) {
+                    discountRow.classList.remove('hidden');
+                    discountDisplay.textContent = '-' + formatPrice(discount);
+                } else {
+                    discountRow.classList.add('hidden');
+                }
+
+                totalDisplay.textContent = formatPrice(total);
+
+                // Compteur
+                const qty = state.cart.reduce((sum, i) => sum + i.qty, 0);
+                cartCountEl.textContent = qty;
+
+                // Activer/désactiver le bouton checkout
+                checkoutBtn.disabled = state.cart.length === 0;
+            }
+
+            // ================================================================
+            // 10. AJOUTER AU PANIER
+            // ================================================================
+            function addToCart(productId, size, color, colorName, qty = 1) {
+                const product = getProduct(productId);
+                if (!product) return;
+
+                // Vérifier le stock
+                const stock = getStock(productId, size);
+                if (stock < qty) {
+                    showToast('❌ Stock insuffisant', 'error');
+                    return;
+                }
+
+                // Vérifier si l'article existe déjà
+                const existing = state.cart.find(item =>
+                    item.productId === productId &&
+                    item.size === size &&
+                    item.color === color
+                );
+
+                if (existing) {
+                    if (existing.qty + qty > stock) {
+                        showToast('❌ Stock insuffisant', 'error');
+                        return;
+                    }
+                    existing.qty += qty;
+                } else {
+                    state.cart.push({
+                        productId: productId,
+                        name: product.name,
+                        size: size,
+                        color: color,
+                        colorName: colorName || getColorName(color),
+                        price: product.basePrice,
+                        qty: qty,
+                        img: product.images[color] || null
+                    });
+                }
+
+                saveCart();
+                renderCart();
                 updateCartUI();
                 cartCountEl.classList.remove('bump');
                 void cartCountEl.offsetWidth;
                 cartCountEl.classList.add('bump');
-
-                // Feedback
-                const btn = addToCartBtn;
-                btn.textContent = '✓ AJOUTÉ !';
-                setTimeout(() => {
-                    btn.innerHTML = '<i class="fas fa-shopping-cart"></i> AJOUTER AU PANIER';
-                }, 1500);
+                showToast(`✅ ${product.name} ajouté au panier`, 'success');
             }
 
-            // ----- VIDER LE PANIER -----
+            // ================================================================
+            // 11. MODIFIER UNE LIGNE DU PANIER
+            // ================================================================
+            function updateCartItem(index, direction) {
+                const item = state.cart[index];
+                if (!item) return;
+
+                const stock = getStock(item.productId, item.size);
+                const newQty = item.qty + direction;
+
+                if (newQty < 1) {
+                    state.cart.splice(index, 1);
+                    showToast('Article supprimé', 'info');
+                } else if (newQty > stock) {
+                    showToast('❌ Stock insuffisant', 'error');
+                    return;
+                } else {
+                    item.qty = newQty;
+                }
+
+                saveCart();
+                renderCart();
+                updateCartUI();
+            }
+
+            // ================================================================
+            // 12. VIDER LE PANIER
+            // ================================================================
             function clearCart() {
-                if (state.cartItems.length === 0) return;
+                if (state.cart.length === 0) return;
                 if (confirm('Vider le panier ?')) {
-                    state.cartItems = [];
+                    state.cart = [];
+                    saveCart();
+                    renderCart();
                     updateCartUI();
                     cartCountEl.classList.remove('bump');
                     void cartCountEl.offsetWidth;
                     cartCountEl.classList.add('bump');
+                    showToast('Panier vidé', 'info');
                 }
             }
 
-            // ----- APPLIQUER CODE PROMO -----
+            // ================================================================
+            // 13. CODE PROMO
+            // ================================================================
             function applyPromo(code) {
                 const trimmed = code.trim().toUpperCase();
                 if (trimmed === 'NORD10') {
                     state.promoCode = 'NORD10';
                     promoFeedback.textContent = '✅ Code promo NORD10 appliqué (10% de réduction)';
-                    promoFeedback.style.color = '#2a7a4b';
+                    promoFeedback.className = 'promo-feedback success';
+                    showToast('🎉 Code promo NORD10 appliqué !', 'success');
                 } else if (trimmed === '') {
                     state.promoCode = null;
                     promoFeedback.textContent = '';
+                    promoFeedback.className = 'promo-feedback';
                 } else {
                     state.promoCode = null;
                     promoFeedback.textContent = '❌ Code invalide';
-                    promoFeedback.style.color = '#b33a3a';
+                    promoFeedback.className = 'promo-feedback error';
+                    showToast('❌ Code promo invalide', 'error');
                 }
                 updateCartUI();
+                renderCart();
             }
 
-            // ----- AFFICHER UNE PAGE -----
-            function showPage(pageId) {
+            // ================================================================
+            // 14. PAIEMENT STRIPE (SIMULATION)
+            // ================================================================
+            function stripeCheckout() {
+                if (state.cart.length === 0) {
+                    showToast('❌ Votre panier est vide', 'error');
+                    return;
+                }
+
+                // Vérifier les stocks
+                for (const item of state.cart) {
+                    const stock = getStock(item.productId, item.size);
+                    if (item.qty > stock) {
+                        showToast(`❌ Stock dépassé pour ${item.name} (${item.size})`, 'error');
+                        return;
+                    }
+                }
+
+                const total = getTotal();
+                const orderId = 'ORD-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+
+                // Simuler un appel API Stripe
+                showToast('⏳ Préparation du paiement…', 'info');
+
+                // Simuler une redirection vers Stripe (dans la vraie vie, on enverrait au backend)
+                setTimeout(() => {
+                    const confirmPayment = confirm(
+                        `🛒 Récapitulatif de la commande\n\n` +
+                        `Articles : ${state.cart.reduce((s, i) => s + i.qty, 0)}\n` +
+                        `Sous-total : ${formatPrice(getSubtotal())}\n` +
+                        `${state.promoCode === 'NORD10' ? `Réduction : -${formatPrice(getDiscountAmount())}\n` : ''}` +
+                        `Total : ${formatPrice(total)}\n\n` +
+                        `Référence : ${orderId}\n\n` +
+                        `Cliquez sur "OK" pour simuler le paiement Stripe.`
+                    );
+
+                    if (confirmPayment) {
+                        showToast('✅ Paiement réussi ! Merci pour votre commande.', 'success');
+                        state.cart = [];
+                        saveCart();
+                        renderCart();
+                        updateCartUI();
+                        cartCountEl.classList.remove('bump');
+                        void cartCountEl.offsetWidth;
+                        cartCountEl.classList.add('bump');
+                    } else {
+                        showToast('❌ Paiement annulé', 'error');
+                    }
+                }, 1000);
+            }
+
+            // ================================================================
+            // 15. NAVIGATION
+            // ================================================================
+            function navigateTo(page) {
+                state.currentPage = page;
+
+                // Mettre à jour les liens actifs
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === page);
+                });
+
                 // Cacher toutes les pages
                 document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-                // Cacher la grille principale
-                mainGrid.style.display = 'none';
-                document.querySelector('.grid-title').style.display = 'none';
-                document.getElementById('productGrid').style.display = 'none';
 
-                if (pageId && document.getElementById('page-' + pageId)) {
-                    document.getElementById('page-' + pageId).classList.add('active');
-                    state.currentPage = pageId;
-                } else {
-                    // Retour à l'accueil
+                if (page === 'catalogue') {
                     mainGrid.style.display = 'grid';
                     document.querySelector('.grid-title').style.display = 'block';
-                document.getElementById('productGrid').style.display = 'grid';
-                    state.currentPage = null;
+                    document.getElementById('productGrid').style.display = 'grid';
+                } else {
+                    mainGrid.style.display = 'none';
+                    document.querySelector('.grid-title').style.display = 'none';
+                    document.getElementById('productGrid').style.display = 'none';
+                    const targetPage = document.getElementById('page-' + page);
+                    if (targetPage) {
+                        targetPage.classList.add('active');
+                    }
                 }
 
                 // Fermer le menu mobile
-                document.getElementById('navLinks').classList.remove('open');
+                navLinksEl.classList.remove('open');
             }
 
-            // ----- GÉNÉRER LA GRILLE -----
-            function renderGrid() {
-                const grid = document.getElementById('productGrid');
-                grid.innerHTML = '';
-                const productKeys = Object.keys(productDB);
-                productKeys.forEach((key, index) => {
-                    const data = productDB[key];
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-                    card.dataset.product = key;
+            // ================================================================
+            // 16. DÉTAIL PRODUIT (OVERLAY)
+            // ================================================================
+            function openDetail(productId) {
+                const product = getProduct(productId);
+                if (!product) return;
 
-                    // Image
-                    const imgDiv = document.createElement('div');
-                    imgDiv.className = 'card-image';
-                    const firstColor = data.colors[0];
-                    const imgUrl = data.images[firstColor];
-                    if (imgUrl) {
-                        imgDiv.innerHTML = `<img src="${imgUrl}" alt="${data.name}">`;
-                    } else {
-                        imgDiv.innerHTML = `<i class="fas ${data.icon}"></i>`;
-                    }
-                    card.appendChild(imgDiv);
-
-                    // Nom
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'card-name';
-                    nameDiv.textContent = data.name;
-                    card.appendChild(nameDiv);
-
-                    // Prix
-                    const priceDiv = document.createElement('div');
-                    priceDiv.className = 'card-price';
-                    const isPromo = ['CAP SNAPBACK', 'OVERSHIRT', 'JACKET'].includes(data.name);
-                    if (isPromo) {
-                        const oldPrice = data.basePrice * 1.2;
-                        priceDiv.innerHTML =
-                            `${formatPrice(oldPrice)} <span class="old">${formatPrice(data.basePrice)}</span>`;
-                    } else {
-                        priceDiv.textContent = formatPrice(data.basePrice);
-                    }
-                    card.appendChild(priceDiv);
-
-                    // Couleurs
-                    const colorsDiv = document.createElement('div');
-                    colorsDiv.className = 'card-colors';
-                    data.colors.forEach(c => {
-                        const dot = document.createElement('span');
-                        dot.className = `mini-dot ${c}`;
-                        colorsDiv.appendChild(dot);
-                    });
-                    card.appendChild(colorsDiv);
-
-                    // Bouton + 
-                    const addBtn = document.createElement('div');
-                    addBtn.className = 'card-add';
-                    addBtn.innerHTML = '<i class="fas fa-plus"></i>';
-                    addBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const p = getProductData(key);
-                        const c = p.colors[0];
-                        const cName = getColorName(c);
-                        addToCart(key, p.sizes[0] || 'M', cName, c, p.basePrice);
-                    });
-                    card.appendChild(addBtn);
-
-                    // Badge promo
-                    if (['CAP SNAPBACK', 'OVERSHIRT', 'JACKET'].includes(data.name)) {
-                        const badge = document.createElement('div');
-                        badge.className = 'promo-badge';
-                        badge.textContent = 'PROMO';
-                        card.appendChild(badge);
-                    }
-
-                    // Click pour ouvrir le détail
-                    card.addEventListener('click', function() {
-                        openDetail(key);
-                    });
-
-                    grid.appendChild(card);
-                });
-            }
-
-            // ----- OUVRIR LE DÉTAIL D'UN PRODUIT -----
-            function openDetail(productKey) {
-                const data = getProductData(productKey);
                 detailOverlay.classList.add('active');
 
                 // Image
-                const firstColor = data.colors[0];
-                const imgUrl = data.images[firstColor];
+                const imgKey = product.colors[0];
+                const imgUrl = product.images[imgKey];
                 if (imgUrl) {
-                    detailImage.innerHTML = `<img src="${imgUrl}" alt="${data.name}">`;
+                    detailImage.innerHTML = `<img src="${imgUrl}" alt="${product.name}">`;
                 } else {
-                    detailImage.innerHTML = `<i class="fas ${data.icon}"></i>`;
+                    detailImage.innerHTML = `<i class="fas ${product.icon}"></i>`;
                 }
 
-                detailTitle.textContent = data.name;
-                detailPrice.textContent = formatPrice(data.basePrice);
-                detailDesc.textContent = data.desc;
+                detailTitle.textContent = product.name;
+                detailDesc.textContent = product.desc;
+
+                if (product.promo && product.oldPrice) {
+                    detailPrice.innerHTML =
+                        `${formatPrice(product.oldPrice)} <span style="font-weight:400;color:#888;text-decoration:line-through;font-size:1.2rem;">${formatPrice(product.basePrice)}</span>`;
+                } else {
+                    detailPrice.textContent = formatPrice(product.basePrice);
+                }
 
                 // Couleurs
                 detailColors.innerHTML = '';
-                data.colors.forEach(c => {
+                product.colors.forEach(c => {
                     const dot = document.createElement('div');
-                    dot.className = `color-dot ${c} active`;
+                    dot.className = `color-dot ${c}${c === product.colors[0] ? ' active' : ''}`;
                     dot.style.width = '32px';
                     dot.style.height = '32px';
-                    dot.dataset.color = getColorName(c);
-                    dot.dataset.img = c;
-                    dot.dataset.price = data.basePrice;
+                    dot.dataset.color = c;
+                    dot.dataset.colorName = getColorName(c);
                     dot.addEventListener('click', function() {
                         detailColors.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
                         this.classList.add('active');
-                        const img = data.images[this.dataset.img];
+                        const img = product.images[this.dataset.color];
                         if (img) {
-                            detailImage.innerHTML = `<img src="${img}" alt="${data.name}">`;
+                            detailImage.innerHTML = `<img src="${img}" alt="${product.name}">`;
                         }
-                        detailPrice.textContent = formatPrice(parseFloat(this.dataset.price) || data.basePrice);
                     });
                     detailColors.appendChild(dot);
                 });
 
                 // Tailles
                 detailSizes.innerHTML = '';
-                data.sizes.forEach(s => {
+                product.sizes.forEach(s => {
+                    const stock = getStock(productId, s);
                     const btn = document.createElement('button');
-                    btn.className = 'size-btn' + (s === 'M' ? ' active' : '');
-                    btn.textContent = s;
+                    btn.className = `size-btn${s === 'M' ? ' active' : ''}${stock === 0 ? ' disabled' : ''}`;
                     btn.dataset.size = s;
+                    btn.textContent = s + (stock > 0 ? ` (${stock})` : ' (rupture)');
+                    if (stock === 0) {
+                        btn.title = 'Rupture de stock';
+                    }
                     btn.addEventListener('click', function() {
+                        if (this.classList.contains('disabled')) return;
                         detailSizes.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
                         this.classList.add('active');
                     });
@@ -1730,65 +2101,178 @@
                 detailAddBtn.onclick = function() {
                     const selectedColorDot = detailColors.querySelector('.color-dot.active');
                     const selectedSizeBtn = detailSizes.querySelector('.size-btn.active');
-                    const color = selectedColorDot ? selectedColorDot.dataset.color : getColorName(data.colors[0]);
-                    const colorKey = selectedColorDot ? selectedColorDot.dataset.img : data.colors[0];
-                    const size = selectedSizeBtn ? selectedSizeBtn.dataset.size : data.sizes[0];
-                    const price = selectedColorDot ? parseFloat(selectedColorDot.dataset.price) : data.basePrice;
-                    addToCart(productKey, size, color, colorKey, price);
+                    const color = selectedColorDot ? selectedColorDot.dataset.color : product.colors[0];
+                    const colorName = selectedColorDot ? selectedColorDot.dataset.colorName : getColorName(product.colors[0]);
+                    const size = selectedSizeBtn ? selectedSizeBtn.dataset.size : product.sizes[0];
+
+                    const stock = getStock(productId, size);
+                    if (stock === 0) {
+                        showToast('❌ Rupture de stock pour cette taille', 'error');
+                        return;
+                    }
+
+                    addToCart(productId, size, color, colorName);
                     detailOverlay.classList.remove('active');
                 };
             }
 
-            // ----- RECHERCHE -----
+            // ================================================================
+            // 17. RECHERCHE
+            // ================================================================
             function searchProducts() {
                 const query = prompt('🔍 Rechercher un produit :');
-                if (!query) return;
-                const results = Object.keys(productDB).filter(k =>
-                    k.toLowerCase().includes(query.toLowerCase())
+                if (!query || query.trim() === '') return;
+                const results = PRODUCTS.filter(p =>
+                    p.name.toLowerCase().includes(query.toLowerCase()) ||
+                    p.sub.toLowerCase().includes(query.toLowerCase())
                 );
                 if (results.length > 0) {
-                    openDetail(results[0]);
+                    openDetail(results[0].id);
                 } else {
-                    alert('Aucun produit trouvé pour "' + query + '"');
+                    showToast('❌ Aucun produit trouvé pour "' + query + '"', 'error');
                 }
             }
 
-            // ----- NAVIGATION PAGES -----
+            // ================================================================
+            // 18. GRILLE PRODUITS
+            // ================================================================
+            function renderGrid() {
+                gridContainer.innerHTML = '';
+                PRODUCTS.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.dataset.productId = product.id;
+
+                    // Image
+                    const imgDiv = document.createElement('div');
+                    imgDiv.className = 'card-image';
+                    const firstColor = product.colors[0];
+                    const imgUrl = product.images[firstColor];
+                    if (imgUrl) {
+                        imgDiv.innerHTML = `<img src="${imgUrl}" alt="${product.name}">`;
+                    } else {
+                        imgDiv.innerHTML = `<i class="fas ${product.icon}"></i>`;
+                    }
+                    card.appendChild(imgDiv);
+
+                    // Nom
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'card-name';
+                    nameDiv.textContent = product.name;
+                    card.appendChild(nameDiv);
+
+                    // Prix
+                    const priceDiv = document.createElement('div');
+                    priceDiv.className = 'card-price';
+                    if (product.promo && product.oldPrice) {
+                        priceDiv.innerHTML =
+                            `${formatPrice(product.oldPrice)} <span class="old">${formatPrice(product.basePrice)}</span>`;
+                    } else {
+                        priceDiv.textContent = formatPrice(product.basePrice);
+                    }
+                    card.appendChild(priceDiv);
+
+                    // Couleurs
+                    const colorsDiv = document.createElement('div');
+                    colorsDiv.className = 'card-colors';
+                    product.colors.forEach(c => {
+                        const dot = document.createElement('span');
+                        dot.className = `mini-dot ${c}`;
+                        colorsDiv.appendChild(dot);
+                    });
+                    card.appendChild(colorsDiv);
+
+                    // Bouton +
+                    const addBtn = document.createElement('div');
+                    addBtn.className = 'card-add';
+                    addBtn.innerHTML = '<i class="fas fa-plus"></i>';
+                    addBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const c = product.colors[0];
+                        const size = product.sizes[0] || 'Taille unique';
+                        const stock = getStock(product.id, size);
+                        if (stock === 0) {
+                            showToast('❌ Rupture de stock', 'error');
+                            return;
+                        }
+                        addToCart(product.id, size, c, getColorName(c));
+                    });
+                    card.appendChild(addBtn);
+
+                    // Badge promo
+                    if (product.promo) {
+                        const badge = document.createElement('div');
+                        badge.className = 'promo-badge';
+                        badge.textContent = 'PROMO';
+                        card.appendChild(badge);
+                    }
+
+                    // Vérifier si tous les stocks sont à 0
+                    const totalStock = Object.values(product.stock).reduce((a, b) => a + b, 0);
+                    if (totalStock === 0) {
+                        const badge = document.createElement('div');
+                        badge.className = 'out-of-stock-badge';
+                        badge.textContent = 'RUPTURE';
+                        card.appendChild(badge);
+                    }
+
+                    // Click pour ouvrir le détail
+                    card.addEventListener('click', function() {
+                        openDetail(product.id);
+                    });
+
+                    gridContainer.appendChild(card);
+                });
+            }
+
+            // ================================================================
+            // 19. SYNCHRONISATION INTER-ONGLETS
+            // ================================================================
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'nordluxxCart') {
+                    loadCart();
+                    renderCart();
+                    updateCartUI();
+                }
+            });
+
+            // ================================================================
+            // 20. ÉVÉNEMENTS
+            // ================================================================
+
+            // Navigation
             navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    const page = this.dataset.page;
-                    showPage(page);
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateTo(this.dataset.page);
                 });
             });
 
-            // ----- ÉVÉNEMENTS -----
             // Logo -> Accueil
             homeLogo.addEventListener('click', function() {
-                showPage(null);
+                navigateTo('catalogue');
             });
 
             // Recherche
             searchIcon.addEventListener('click', searchProducts);
 
-            // Panier (ouvrir la page panier ou faire défiler)
+            // Panier (scroll)
             cartIcon.addEventListener('click', function() {
                 document.getElementById('cartSide').scrollIntoView({ behavior: 'smooth' });
             });
 
             // Checkout
-            checkoutBtn.addEventListener('click', function() {
-                if (state.cartItems.length === 0) {
-                    alert('Votre panier est vide.');
+            checkoutBtn.addEventListener('click', stripeCheckout);
+
+            // Ajouter au panier (principal)
+            addToCartBtn.addEventListener('click', function() {
+                const product = getProduct(state.currentProductId);
+                const stock = getStock(state.currentProductId, state.selectedSize);
+                if (stock === 0) {
+                    showToast('❌ Rupture de stock', 'error');
                     return;
                 }
-                alert('🛒 Commande validée !\nTotal : ' + totalDisplay.textContent +
-                    '\n\nMerci pour votre commande sur NØRDLUXX.');
-            });
-
-            // Bouton ajouter au panier principal
-            addToCartBtn.addEventListener('click', function() {
-                addToCart(state.currentProduct, state.selectedSize, state.selectedColor, state.selectedColorKey, state
-                    .selectedPrice);
+                addToCart(state.currentProductId, state.selectedSize, state.selectedColor, state.selectedColorName);
             });
 
             // Code promo
@@ -1805,7 +2289,7 @@
             // Vider le panier
             clearCartBtn.addEventListener('click', clearCart);
 
-            // Fermeture du détail
+            // Fermer le détail
             closeDetail.addEventListener('click', function() {
                 detailOverlay.classList.remove('active');
             });
@@ -1816,23 +2300,50 @@
             });
 
             // Menu mobile
-            const navToggle = document.getElementById('navToggle');
-            const navLinksEl = document.getElementById('navLinks');
             navToggle.addEventListener('click', function() {
                 navLinksEl.classList.toggle('open');
             });
 
-            // ----- INIT -----
-            renderGrid();
-            displayProduct('HOODIE OVERSIZE');
+            // Fermer la bannière promo
+            closeBannerBtn.addEventListener('click', function() {
+                promoBanner.style.display = 'none';
+            });
 
-            // Sélectionner M par défaut
-            document.querySelector('.size-btn.active')?.classList.add('active');
+            // Scroll header
+            window.addEventListener('scroll', function() {
+                document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 20);
+            });
 
-            console.log('🏷️ NØRDLUXX — Boutique fonctionnelle');
-            console.log('💡 Code promo : NORD10 (10% de réduction)');
+            // ================================================================
+            // 21. INITIALISATION
+            // ================================================================
+            function init() {
+                loadCart();
+                renderGrid();
+                renderProduct('hoodie-oversize');
+                renderCart();
+                updateCartUI();
+
+                // Vérifier les paramètres URL (pour Stripe)
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('success')) {
+                    showToast('✅ Paiement réussi ! Merci pour votre commande.', 'success');
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+                if (params.get('cancel')) {
+                    showToast('❌ Paiement annulé', 'error');
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+
+                console.log('🏷️ NØRDLUXX — Boutique fonctionnelle');
+                console.log('💡 Code promo : NORD10 (10% de réduction)');
+                console.log('📦 ' + PRODUCTS.length + ' produits disponibles');
+            }
+
+            init();
 
         })();
     </script>
+
 </body>
 </html>
